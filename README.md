@@ -36,6 +36,8 @@ struct MemoryBlock {
 
 `PhantomData<u8>` is ued to indicate that `MemoryBlock` logically owns a `u8` value, even though it doesn't actually contain one. This is important for correct `Drop` behavior and to prevent the compiler from thinking the type is invariant over `u8`.
 
+The `ptr` field is a pointer to the beginning of the allocated memory block. It's of type `NonNull<u8>`, which is a wrapper around a raw pointer that is guaranteed to be non-null.
+
 ## Smart Pointers
 
 - `NonNull<u8>` is used for the raw pointer in `MemoryBlock`, `NonNull` is a wrapper around raw pointers that's guaranteed to be a non-null.
